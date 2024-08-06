@@ -2,6 +2,80 @@
 title: "GitHub Practice"
 author: "Naomi Moraes"
 format: html
+editor_options: 
+  chunk_output_type: console
 ---
 
 Naomi - babey <3!
+
+---
+
+```{r}
+#load packages
+
+library(tidyverse)
+
+# create function
+
+eq1 <- function(x){
+  3*x^2 + 4
+  }
+
+#create a data frame with range of values to eval our fxn across
+
+my_data_range <- data.frame(x = c(1,100))
+
+#plot our function as a continuous curve over our specified range of values in our df
+
+ggplot(data = my_data_range, aes(x = x)) + 
+  geom_function(fun = eq1)
+
+
+```
+
+```{r}
+eq2 <- function(x){
+  24 - (5*x^3) + (21*x^2)
+}
+
+ggplot(data = data.frame(x = c(-50,50)), aes(x = x)) +
+  geom_function(fun = eq2)
+
+```
+
+```{r}
+#create function 
+ct <- function(t){
+  t^3
+}
+
+#find deriv of f(x)
+
+dc_dt <- D(expression(t^3),"t")
+
+#function of deriv
+
+dc_dt_fun <- function(t){
+  3 * t^2
+}
+
+#df of values 
+data_range <- data.frame(t = c(-5,5))
+
+#plot function
+
+ggplot(data = data_range, aes(x = t)) +
+  geom_function(fun = ct, color = "blue")+
+geom_function(fun = dc_dt_fun, color = "red")
+```
+
+```{r}
+# Create the expression ----
+f_xyz <- expression(2 * x * y - 3 * x^2 * z^3)
+
+# Partial with respect to x ----
+df_dx <- D(expr = f_xyz, name = "x")
+df_dx
+```
+
+
